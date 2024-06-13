@@ -60,3 +60,23 @@ app.get("/users", async (req, res) => {
 app.listen(3005, () => {
   console.log("eSec server running!");
 });
+
+
+// UPDATE USERS
+
+app.put("/updateUsers/:id", async (req, res) => {
+  const updatedUser = await GuardsModel.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true
+  })
+  try {
+    res.status(200).json({
+      status: "Success",
+      data : {
+        updatedUser
+      }
+    })
+  } catch(err) {
+    console.log(err)
+  }
+})

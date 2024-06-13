@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import "../Styles/Users.css"
+import "../Styles/Users.css";
 
 function Home() {
   // VIEW USERS FUNCTIONALITY
@@ -11,7 +11,6 @@ function Home() {
     try {
       const viewedUsers = await axios.get("http://localhost:3005/users");
       setUserData(viewedUsers.data);
-     
     } catch (error) {
       console.error("Error while retrieving guards' data!", error);
     }
@@ -43,7 +42,9 @@ function Home() {
           <table>
             <thead>
               <tr>
-                <th>N<sup>o</sup></th>
+                <th>
+                  N<sup>o</sup>
+                </th>
                 <th>Full Name</th>
                 <th>Username</th>
                 <th>Email</th>
@@ -57,8 +58,12 @@ function Home() {
                   <td>{user.Fullname}</td>
                   <td>{user.Username}</td>
                   <td>{user.Email}</td>
-                  <td><button>Edit</button><button>Delete</button></td>
-                 
+                  <td>
+                    <Link to="/updateUsers">
+                      <button>Edit</button>
+                    </Link>
+                    <button>Delete</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
